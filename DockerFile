@@ -1,0 +1,17 @@
+FROM node:16-alpine
+
+# Create a directory isnide docker image that will store the application in path /app
+WORKDIR /app  
+
+# I will copy the package .json file locally to this new directory in the docker image
+COPY package.json .
+
+# Then i will install all these dependencies with npm 
+RUN npm install
+
+# I will also copy all the code locally from file and directories to be inside /app under the docker image
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]
